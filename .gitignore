@@ -1,0 +1,21 @@
+# macOS system files
+.DS_Store
+
+# Build directories (compiled binaries and object files)
+Debug/
+Release/
+
+# Eclipse / STM32CubeIDE workspace files
+.metadata/
+.settings/
+*.launch
+
+# Generic C/C++ compiled files and artifacts
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+*.su
+*.list
+*.log
