@@ -59,13 +59,13 @@ void ssd1306_init(void)
 
 void ssd1306_cmd(uint8_t cmd)
 {
-	I2C1_Write(SSD1306_ADDR, SSD1306_CMD, cmd);
+	I2C1_Write(SSD1306_ADDR, SSD1306_CMD, &cmd, 1);
 }
 
 void ssd1306_data(uint8_t data) {
 
     /* Send data byte to SSD1306 */
-	I2C1_Write(SSD1306_ADDR, SSD1306_DATA, data);
+	I2C1_Write(SSD1306_ADDR, SSD1306_DATA, &data, 1);
 }
 
 void ssd1306_clear_display(void)
@@ -80,10 +80,12 @@ void ssd1306_clear_display(void)
     ssd1306_cmd(0);
     ssd1306_cmd(7);
 
+    uint8_t clear = 0;
+
     // Clear entire display GDDRAM
     for (int i = 0; i < DISPLAY_SIZE; i++)
     {
-        I2C1_Write(0x3C, 0x40, 0x00);
+        I2C1_Write(SSD1306_ADDR, SSD1306_DATA, &clear, 1);
     }
 }
 
